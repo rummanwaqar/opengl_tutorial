@@ -6,6 +6,8 @@ find_package( OpenGL REQUIRED )
 find_package(GLEW REQUIRED)
 pkg_check_modules( GLFW REQUIRED glfw3 )
 
+add_definitions( -std=gnu++0x )
+
 include_directories(
 	include/
 	${OPENGL_INCLUDE_DIR}
