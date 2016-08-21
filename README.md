@@ -9,3 +9,4 @@ Import the project into eclipse.
 ## Dependencies
 
 * Texture loading requires the soil library `libsoil-dev`
+* Transformations requires the glm library `libglm-dev`
