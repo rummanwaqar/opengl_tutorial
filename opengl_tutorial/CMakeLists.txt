@@ -12,9 +12,10 @@ include_directories(
 	${GLEW_INCLUDE_DIRS}
 )
 
-add_executable(test1 src/test.cpp)
-target_link_libraries(test1 
+add_executable( helloWindow src/hello_window.cpp)
+target_link_libraries( helloWindow 
 	${OPENGL_gl_LIBRARY}
 	${OPENGL_glu_LIBRARY}
 	${GLEW_LIBRARIES}
+	glfw
 )
