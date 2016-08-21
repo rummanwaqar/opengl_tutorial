@@ -29,3 +29,20 @@ target_link_libraries( helloTriangle
 	${GLEW_LIBRARIES}
 	glfw
 )
+
+add_library( shader src/shader.cpp )
+target_link_libraries( shader 
+	${OPENGL_gl_LIBRARY}
+	${OPENGL_glu_LIBRARY}
+	${GLEW_LIBRARIES}
+	glfw
+)
+
+add_executable( shaderTest src/shader_test.cpp)
+target_link_libraries( shaderTest 
+	${OPENGL_gl_LIBRARY}
+	${OPENGL_glu_LIBRARY}
+	${GLEW_LIBRARIES}
+	glfw
+	shader
+)
