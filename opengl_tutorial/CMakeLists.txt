@@ -21,3 +21,11 @@ target_link_libraries( helloWindow
 	${GLEW_LIBRARIES}
 	glfw
 )
+
+add_executable( helloTriangle src/hello_triangle.cpp)
+target_link_libraries( helloTriangle 
+	${OPENGL_gl_LIBRARY}
+	${OPENGL_glu_LIBRARY}
+	${GLEW_LIBRARIES}
+	glfw
+)
