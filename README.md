@@ -1,0 +1,7 @@
+## To compile
+
+```
+mkdir build && cd $_
+cmake -G"Eclipse CDT4 - Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug ../opengl_tutorial
+```
+Import the project into eclipse. 
