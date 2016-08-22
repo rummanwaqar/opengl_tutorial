@@ -61,6 +61,10 @@ int main( int argc, char** argv )
 	}
 	glfwMakeContextCurrent( window );
 	glfwSetKeyCallback( window, key_callback );
+	glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetScrollCallback(window, scroll_callback);
+	// Options
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	glewExperimental = GL_TRUE;
 	if( glewInit() != GLEW_OK )
@@ -82,11 +86,11 @@ int main( int argc, char** argv )
 	 */
 	Shader myShader( "../opengl_tutorial/shaders/model.vs", "../opengl_tutorial/shaders/model.fs" );
 	std::cout << "Loading model ... " << std::endl;
-	Model myModel( "../opengl_tutorial/models/drone/drone.obj" );
+	Model myModel( "../opengl_tutorial/models/B-747/B-747.obj" );
 	std::cout << "Model loaded" << std::endl;
 
 	// Draw in wireframe
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// loop
 	while( !glfwWindowShouldClose(window) )
@@ -95,12 +99,13 @@ int main( int argc, char** argv )
 		GLfloat currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
+		std::cout << deltaTime << std::endl;
 
 		glfwPollEvents();
 		Do_Movement();
 
 		// clear the color buffer
-		glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		myShader.use();
@@ -110,12 +115,15 @@ int main( int argc, char** argv )
         glUniformMatrix4fv(glGetUniformLocation( myShader.getProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(glGetUniformLocation( myShader.getProgram(), "view"), 1, GL_FALSE, glm::value_ptr(view));
 
-		// draw the model
+//		// draw the model
 		glm::mat4 model;
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
         model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
         glUniformMatrix4fv(glGetUniformLocation( myShader.getProgram(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         myModel.draw( myShader );
+
+		// Swap the screen buffers
+		glfwSwapBuffers(window);
 	}
 
 	glfwTerminate();

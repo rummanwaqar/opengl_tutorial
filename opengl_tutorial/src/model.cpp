@@ -107,7 +107,7 @@ std::vector<Texture> Model::loadMaterialTextures( aiMaterial* mat, aiTextureType
 		mat->GetTexture( type, i, &str );
 		// check if texture is already loaded
 		GLboolean skip = false;
-		for( GLuint j=0; j<textures_loaded.size(); i++ )
+		for( GLuint j=0; j<textures_loaded.size(); j++ )
 		{
 			if( textures_loaded[j].path == str )
 			{
@@ -138,6 +138,13 @@ GLint TextureFromFile(const char* path, std::string directory)
 	glGenTextures( 1, &textureID );
 	int width, height;
 	unsigned char* image = SOIL_load_image( filename.c_str(), &width, &height, 0, SOIL_LOAD_RGB );
+	if( image == NULL )
+	{
+		std::cerr << "TEXTURE::NOT_LOADED::" << filename << std::endl;
+		return -1;
+	} else {
+		std::cout << "Loaded: " << filename << std::endl;
+	}
 	// assign texture to ID
 	glBindTexture( GL_TEXTURE_2D, textureID );
 		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image );
