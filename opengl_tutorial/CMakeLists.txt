@@ -73,3 +73,13 @@ target_link_libraries( helloTransformations
 	glfw
 	shader
 )
+
+add_executable( helloCoordSystem src/hello_coordsystem.cpp)
+target_link_libraries( helloCoordSystem
+	${OPENGL_gl_LIBRARY}
+	${OPENGL_glu_LIBRARY}
+	${GLEW_LIBRARIES}
+	${SOIL_LIBRARIES}
+	glfw
+	shader
+)
