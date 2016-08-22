@@ -83,3 +83,13 @@ target_link_libraries( helloCoordSystem
 	glfw
 	shader
 )
+
+add_executable( helloCamera src/hello_camera.cpp)
+target_link_libraries( helloCamera
+	${OPENGL_gl_LIBRARY}
+	${OPENGL_glu_LIBRARY}
+	${GLEW_LIBRARIES}
+	${SOIL_LIBRARIES}
+	glfw
+	shader
+)
