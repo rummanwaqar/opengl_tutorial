@@ -126,3 +126,14 @@ target_link_libraries( helloModel
 	model
 	camera
 )
+
+add_executable( helloSkybox src/hello_skybox.cpp)
+target_link_libraries( helloSkybox
+	${OPENGL_gl_LIBRARY}
+	${OPENGL_glu_LIBRARY}
+	${GLEW_LIBRARIES}
+	${SOIL_LIBRARIES}
+	glfw
+	shader
+	camera
+)
